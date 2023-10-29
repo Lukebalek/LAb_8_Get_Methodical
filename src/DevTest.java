@@ -7,12 +7,6 @@ public class DevTest {
         int age = 0;
         double salary = 0;
         int favNum = 0;
-        boolean value = false;
-        value = getYNConfirm(testScan,"Do you want to play fortnite?");
-        String ssnRegEx = "^\\d{3}-\\d{2}-\\d{4}$";
-        String ssn = SafeInput.getRegExString(testScan, "Enter your SSN", ssnRegEx);
-        System.out.println("Your ssn is: " + ssn);
-
     /*firstName = getNonZeroLenString(testScan, "Enter your first name");
         System.out.println("Firstname is " + firstName);
     }
@@ -25,14 +19,10 @@ public class DevTest {
 
         favNum = getRangedInt(testScan, "Enter your favorite number", 1, 10);
         System.out.println("You said your fav num is: " + favNum);
-
+        */
         salary = getRangedDouble(testScan, "Enter your salary", 300, 100000);
-        System.out.println("You said your salary is: " + salary);*/
-
-
-
+        System.out.println("You said your salary is: " + salary);
     }
-
     /**
      * Returns a String input by the user that must be at least one character
      * @param pipe the scanner to use for the input
@@ -90,7 +80,7 @@ public class DevTest {
      * returns an unconstrained double value
      * @param pipe scanner to use for input
      * @param prompt msg to tell user what to input
-     * @return an unconstrained double value
+     * @return an uunconstrained double value
      */
     public static double getDouble(Scanner pipe, String prompt) {
         boolean done = false;
@@ -146,7 +136,7 @@ public class DevTest {
     }
 
     /**
-     * gets a double val from the user with a range
+     * gets an double val from the user with a range
      * @param pipe Scanner to use for the input
      * @param prompt msg to user for what to enter
      * @param low the bottom value for the inclusive range
@@ -178,57 +168,4 @@ public class DevTest {
         return value;
     }
 
-    /**
-     * RETURNS A TRUE FALSE VALUE FOR YES OR NO INPUT [YN]
-     * @param pipe Scanner to use for the input
-     * @param prompt msg to user for what to enter
-     * @return a boolean value for yes or no
-     */
-    public static boolean getYNConfirm(Scanner pipe, String prompt)
-    { boolean done = false;
-        String response = "";
-        boolean retVal = false;
-        do {
-            System.out.print(prompt + " [YyNn]: ");
-            response = pipe.nextLine();
-
-            if (response.toUpperCase().matches("[YN]")) {
-                done = true;
-                if (response.equalsIgnoreCase("Y")) {
-                    retVal = true;}
-                else {
-                    retVal = false;
-                }
-            }
-            else {
-                System.out.println("\nYou must enter a [y/n]!");
-
-            }
-
-        }while(!done);
-        return retVal;
-    }
-
-
-    /**
-     * takes a regEx String and returns a valid match
-     * @param pipe the scanner used
-     * @param prompt the prompt told to the user
-     * @param regEx the string to match against
-     * @return a string from the user that matches the regEx
-     */
-    public static String getRegExString(Scanner pipe, String prompt, String regEx) {
-        boolean done = false;
-        String response = "";
-        do {
-            System.out.print(prompt + "  " + regEx + ": ");
-            response = pipe.nextLine();
-            if (response.matches(regEx)) {
-                done = true;}
-            else {
-                System.out.println("\nYou must enter a String that matches the pattern" + regEx + "!");}
-        }while(!done);
-        return response;
-
-    }
 }
