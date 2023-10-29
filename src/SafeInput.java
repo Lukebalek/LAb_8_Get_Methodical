@@ -57,7 +57,7 @@ public class SafeInput
      * returns an unconstrained double value
      * @param pipe scanner to use for input
      * @param prompt msg to tell user what to input
-     * @return an unconstrained double value
+     * @return an uunconstrained double value
      */
     public static double getDouble(Scanner pipe, String prompt) {
         boolean done = false;
@@ -81,7 +81,6 @@ public class SafeInput
     }
     /**
      * gets an int val from the user with a range
-     *
      * @param pipe Scanner to use for the input
      * @param prompt msg to user for what to enter
      * @param low the bottom value for the inclusive range
@@ -113,7 +112,7 @@ public class SafeInput
         return value;
     }
     /**
-     * gets a double val from the user with a range
+     * gets an double val from the user with a range
      * @param pipe Scanner to use for the input
      * @param prompt msg to user for what to enter
      * @param low the bottom value for the inclusive range
@@ -143,5 +142,84 @@ public class SafeInput
         }while (!done);
 
         return value;
+    }
+
+    /**
+     * RETURNS A TRUE FALSE VALUE FOR YES OR NO INPUT [YN]
+     * @param pipe Scanner to use for the input
+     * @param prompt msg to user for what to enter
+     * @return a boolean value for yes or no
+     */
+    public static boolean getYNConfirm(Scanner pipe, String prompt)
+    { boolean done = false;
+        String response = "";
+        boolean retVal = false;
+        do {
+            System.out.print(prompt + " [YyNn]: ");
+            response = pipe.nextLine();
+
+            if (response.toUpperCase().matches("[YN]")) {
+                done = true;
+                if (response.equalsIgnoreCase("Y")) {
+                    retVal = true;}
+                else {
+                    retVal = false;
+                }
+            }
+            else {
+                System.out.println("\nYou must enter a [y/n]!");
+
+            }
+
+        }while(!done);
+        return retVal;
+    }
+
+
+    /**
+     * takes a regEx String and returns a valid match
+     * @param pipe the scanner used
+     * @param prompt the prompt told to the user
+     * @param regEx the string to match against
+     * @return a string from the user that matches the regEx
+     */
+    public static String getRegExString(Scanner pipe, String prompt, String regEx) {
+        boolean done = false;
+        String response = "";
+        do {
+            System.out.print(prompt + ": [" + regEx + "] : ");
+            response = pipe.nextLine();
+            if (response.matches(regEx)) {
+                done = true;}
+            else {
+                System.out.println("\nYou must enter a String that matches the pattern" + regEx + "!");}
+        }while(!done);
+        return response;
+
+    }
+
+    public static void prettyHeader(String msg) {
+        for (int i = 0; i < 60; i++) {
+            System.out.print("*");
+        }
+        System.out.println();
+        System.out.print("**");
+        int spaceGap = (56 - msg.length())/2;
+        for (int i = 0; i < spaceGap; i++) {
+            System.out.print(" ");
+        }
+        System.out.print(msg);
+        for (int i = 0; i < spaceGap; i++) {
+            System.out.print(" "); }
+        if ((msg.length() % 2) == 1) {
+            System.out.print(" ");
+        }
+        System.out.println("**");
+        for (int i = 0; i < 60; i++) {
+            System.out.print("*");
+        }
+        System.out.println();
+
+
     }
 }
